@@ -5,57 +5,9 @@ A comprehensive machine learning pipeline for bidirectional transliteration betw
 ## 📋 Overview
 
 This project provides a complete end-to-end solution for:
-- **Data Collection & Processing**: Scraping and cleaning Moroccan Darija text from social media
 - **Dataset Generation**: Converting Arabizi to Arabic script using LLM-powered transliteration
 - **Model Training**: Fine-tuning ByT5 models for accurate bidirectional transliteration
 - **Inference**: Real-time transliteration with intelligent word-level processing
-
-## 🎯 Features
-
-- **Robust Data Pipeline**: Automated data collection, cleaning, and validation
-- **LLM-Assisted Dataset Creation**: Uses Google's Gemini API for high-quality transliteration
-- **Synthetic Data Augmentation**: Generates rule-based synthetic examples to improve model robustness
-- **Word-Level Alignment**: Extracts parallel word pairs from sentence-level data
-- **Production-Ready Models**: Two-stage training (base + fine-tuned) for optimal performance
-- **Smart Inference**: Handles numbers, single characters, and punctuation intelligently
-
-## 📁 Project Structure
-
-```
-DataProcessing/
-├── 📊 Data Collection & Processing
-│   ├── generate_dataset.py          # Main dataset generation (Arabizi → Arabic)
-│   ├── generate_dataset_bach.py     # Batch processing variant
-│   ├── clean_and_refine.py          # Dataset refinement and quality control
-│   └── filter_non_darija.py         # Language filtering (removes non-Darija)
-│
-├── 🔤 Word-Level Processing
-│   ├── pair_words.py                # Extract word pairs from sentences
-│   └── clean_pair.py                # GPU availability checker
-│
-├── 🤖 Model Training
-│   ├── train_model.py               # Initial model training (ByT5-small)
-│   ├── finetune_model.py            # Fine-tuning with augmented data
-│   └── generate_fake_words.py       # Synthetic data generation
-│
-├── 🚀 Inference
-│   ├── use_model.py                 # Interactive transliteration tool
-│   └── test_model.py                # Model evaluation script
-│
-├── 📁 Datasets
-│   ├── darija_reels_comments.csv           # Raw scraped data
-│   ├── darija_cleaned_dataset_robust.csv   # Cleaned sentence pairs
-│   ├── darija_final_dataset.csv            # Final refined dataset
-│   ├── darija_dataset_clean_final.csv      # Training-ready data
-│   ├── darija_word_pairs.csv               # Word-level pairs
-│   ├── synthetic_dataset.csv               # Synthetic examples
-│   ├── darija_dataset_augmented.csv        # Combined real + synthetic
-│   └── moroccan_corpus.jsonl               # Large-scale corpus (711MB)
-│
-└── 🎓 Models
-    ├── darija_transliteration_model/       # Base trained model
-    └── darija_transliteration_model_v2/    # Fine-tuned model (recommended)
-```
 
 ## 🚀 Quick Start
 
@@ -65,12 +17,9 @@ DataProcessing/
 pip install pandas transformers datasets torch scikit-learn google-generativeai
 ```
 
-### 1. Generate Dataset (Optional - datasets provided)
+### 1. clean Dataset (Optional - datasets provided)
 
 ```bash
-# Generate transliteration pairs using Gemini API
-python generate_dataset.py
-
 # Refine and filter the dataset
 python clean_and_refine.py
 python filter_non_darija.py
@@ -227,30 +176,5 @@ The system automatically switches between models if quota limits are hit:
    ```python
    fp16=True  # In training arguments (Windows users: keep False)
    ```
-
-## 🤝 Contributing
-
-Contributions are welcome! Areas for improvement:
-- [ ] Add more diverse data sources (Twitter, TikTok, etc.)
-- [ ] Implement beam search decoding for better quality
-- [ ] Add sentiment analysis labels
-- [ ] Create web interface for easy access
-- [ ] Support for other Maghrebi dialects (Algerian, Tunisian)
-
-## 📄 License
-
-This project is open-source and available under the MIT License.
-
-## 🙏 Acknowledgments
-
-- **Google Gemini API**: For high-quality LLM-powered transliteration
-- **Hugging Face Transformers**: For the ByT5 model implementation
-- **Moroccan Darija Community**: For linguistic insights and validation
-
-## 📧 Contact
-
-For questions or collaborations, please open an issue on GitHub.
-
----
 
 **Note**: This project is part of a Master's program in Data Science and Analytics (2024-2025) - Natural Language Processing course.
